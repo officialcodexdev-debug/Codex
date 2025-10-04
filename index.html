@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeX | Digital Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="title-logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Loading Screen -->
+    <div id="preloader">
+        <img src="images/logo.png" alt="CodeX Loading..." class="preloader-logo">
+        <div class="loader"></div>
+    </div>
+
+
+    <header id="header">
+        <nav class="navbar container">
+            <a href="#" class="logo-link">
+                <img src="images/logo.png" alt="CodeX" class="logo">
+            </a>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-bg parallax-bg"></div>
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+
+        <div class="hero-image">
+            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <path fill="var(--primary)"
+                    d="M250,100 C350,100 400,150 400,250 C400,350 350,400 250,400 C150,400 100,350 100,250 C100,150 150,100 250,100 Z"
+                    opacity="0.1" />
+                <path fill="var(--accent1)"
+                    d="M300,200 C350,200 380,230 380,280 C380,330 350,360 300,360 C250,360 220,330 220,280 C220,230 250,200 300,200 Z"
+                    opacity="0.1" />
+                <path fill="var(--accent2)"
+                    d="M200,150 C240,150 260,170 260,210 C260,250 240,270 200,270 C160,270 140,250 140,210 C140,170 160,150 200,150 Z"
+                    opacity="0.1" />
+                <circle cx="250" cy="250" r="120" fill="url(#gradient)" opacity="0.8" />
+                <circle cx="250" cy="250" r="100" fill="var(--darker)" />
+                <path fill="var(--primary)" d="M220,230 L240,230 L240,270 L220,270 Z" />
+                <path fill="var(--accent1)" d="M260,230 L280,230 L280,250 L260,250 Z" />
+                <path fill="var(--accent2)" d="M260,260 L280,260 L280,280 L260,280 Z" />
+                <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="var(--primary)" />
+                        <stop offset="100%" stop-color="var(--accent1)" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <h1>We Create Digital Masterpieces</h1>
+                <p>We are a team of passionate designers, developers, and strategists dedicated to crafting exceptional
+                    digital solutions that drive results and create lasting impressions.</p>
+                <div class="hero-btns">
+                    <a href="#portfolio" class="btn">
+                        <i class="fas fa-eye"></i> View Our Work
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-paper-plane"></i> Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            Scroll to explore
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-bg parallax-bg"></div>
+        <div class="container">
+            <div class="section-title">
+                <h2>About Our Team</h2>
+                <p>We are a collective of creative minds with diverse expertise, united by our passion for innovation
+                    and excellence in digital craftsmanship.</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text animate-on-scroll">
+                    <h3>We Are CodeX</h3>
+                    <p>Founded with a vision to redefine digital experiences, CodeX brings together a team of
+                        specialists who excel in their respective fields. Our collaborative approach ensures that every
+                        project benefits from multiple perspectives.</p>
+                    <p>We believe in the power of technology to transform businesses and create meaningful connections
+                        between brands and their audiences. Our process is built on transparency, communication, and a
+                        shared commitment to excellence.</p>
+                    <!-- <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-text">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">6</div>
+                            <div class="stat-text">Team Members</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5</div>
+                            <div class="stat-text">Years Experience</div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="about-image animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                        alt="Our Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team" id="team">
+        <div class="team-bg parallax-bg"></div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Team</h2>
+                <p>Get to know the talented individuals who make up the CodeX team and bring your digital visions to
+                    life.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member animate-on-scroll">
+            <div class="member-image">
+                <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&w=800&q=80" alt="Adithyan P.S">
+            </div>
+            <div class="member-info">
+                <h3>Adithyan P.S</h3>
+                <div class="member-role">Frontend Developer</div>
+                <p>Adithyan is passionate about crafting responsive and interactive web interfaces using HTML, CSS, JavaScript, and React.</p>
+                <div class="member-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Member 2 -->
+       <div class="team-member animate-on-scroll">
+  <div class="member-image">
+    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=800&q=80" alt="Tony K. Augusting">
+  </div>
+  <div class="member-info">
+    <h3>Tony K. Augustin</h3>
+    <div class="member-role">Frontend Developer</div>
+    <p>Tony specializes in creating modern, user-friendly websites with pixel-perfect layouts and smooth user 
+        experiences.</p>
+    <div class="member-social">
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- Member 3 -->
+<div class="team-member animate-on-scroll">
+  <div class="member-image">
+    <img src="https://images.unsplash.com/photo-1624561172888-ac93c696e10c?auto=format&fit=crop&w=800&q=80" alt="Gopeekrishnan">
+  </div>
+  <div class="member-info">
+    <h3>Gopeekrishnan</h3>
+    <div class="member-role">UX Designer</div>
+    <p>Gopeekrishnan focuses on designing intuitive and engaging user experiences, combining creativity and usability for every project.</p>
+    <div class="member-social">
+      <a href="#"><i class="fab fa-behance"></i></a>
+      <a href="#"><i class="fab fa-dribbble"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- Member 4 -->
+<div class="team-member animate-on-scroll">
+  <div class="member-image">
+    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Joseph Tinu">
+  </div>
+  <div class="member-info">
+    <h3>Joseph Tinu A.S</h3>
+    <div class="member-role">Backend Developer</div>
+    <p>Joseph is an expert in Django and builds scalable and secure backend systems that power modern web applications.</p>
+    <div class="member-social">
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- Member 5 -->
+<div class="team-member animate-on-scroll">
+  <div class="member-image">
+    <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=800&q=80" alt="Gokul Krishna">
+  </div>
+  <div class="member-info">
+    <h3>Gokul Krishna</h3>
+    <div class="member-role">Backend Developer</div>
+    <p>Gokul develops robust and efficient backend systems using Django, ensuring reliable performance and seamless database integration.</p>
+    <div class="member-social">
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- Member 6 -->
+<div class="team-member animate-on-scroll">
+  <div class="member-image">
+    <img src="closeup.jpg" alt="Akshay">
+  </div>
+  <div class="member-info">
+    <h3>Akshay</h3>
+    <div class="member-role">Cybersecurity Specialist</div>
+    <p>Akshay ensures the safety and integrity of all our web applications, focusing on network defense, vulnerability analysis, and system protection.</p>
+    <div class="member-social">
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+</div>
+
+
+
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="services-bg parallax-bg"></div>
+        <div class="container"> 
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>We offer a comprehensive range of digital services to help your business thrive in the modern
+                    landscape.
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>We build responsive, high-performance websites and web applications using the latest technologies
+                        and
+                        best practices.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Our design process focuses on creating intuitive, visually appealing interfaces that provide
+                        exceptional user experiences.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Digital Marketing</h3>
+                    <p>We develop comprehensive digital marketing strategies to help businesses grow their online
+                        presence
+                        and reach their target audience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <div class="portfolio-bg parallax-bg"></div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Portfolio</h2>
+                <p>Explore some of our recent projects that showcase our expertise and creative approach.</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80"
+                        alt="Project 1">
+                    <div class="portfolio-overlay">
+                        <h3>E-commerce Platform</h3>
+                        <p>Web Development</p>
+                    </div>
+                </div>
+                <div class="portfolio-item animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80"
+                        alt="Project 2">
+                    <div class="portfolio-overlay">
+                        <h3>Mobile App UI</h3>
+                        <p>UI/UX Design</p>
+                    </div>
+                </div>
+                <div class="portfolio-item animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                        alt="Project 3">
+                    <div class="portfolio-overlay">
+                        <h3>Brand Identity</h3>
+                        <p>Graphic Design</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-bg parallax-bg"></div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Ready to start your next project? Reach out to us and let's create something amazing together.</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info animate-on-scroll">
+                    <h3>Let's Start a Project Together</h3>
+                    <p>We're always excited to hear about new projects and opportunities. Reach out to us and let's
+                        discuss
+                        how we can help bring your ideas to life.</p>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Our Office</h4>
+                            <p>Kochi, Kerala</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Phone</h4>
+                            <a href="tel:+919496418410" class="phone-link"><p>+91 9496418410</p></a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Email</h4>
+                            <a href="mailto:official.codex.dev@gmail.com" class="email-link"><p>official.codex.dev@gmail.com</p></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form animate-on-scroll">
+                    <form id="contactForm"
+                        action="https://script.google.com/macros/s/AKfycbxs_jLC-vGKlKt3E-81yV972rMfl7_tFszRPboeYv93b36ucpJQ6KfjiGyxUyLGAA4f/exec"
+                        method="post">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject" name="subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn" id="submit">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Notifications -->
+                <div class="overlay" id="overlay"></div>
+
+                <div class="success-notification" id="successNotification">
+                    <div class="success-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h2>Message Sent Successfully!</h2>
+                    <p>Thank you for contacting us. We have received your message and will get back to you as soon as
+                        possible.</p>
+                    <button class="btn" id="closeSuccessNotification">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+
+                <div class="error-notification" id="errorNotification">
+                    <div class="error-icon">
+                        <i class="fas fa-exclamation"></i>
+                    </div>
+                    <h2>Submission Failed</h2>
+                    <p id="errorMessage">There was an error sending your message. Please try again later.</p>
+                    <a href="#home" class="btn" id="closeErrorNotification">
+                        <i class="fas fa-times"></i> Close
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <img src="images/logo.png" alt="CodeX Logo" class="logo-footer">
+                    <p>We are a creative team passionate about designing and developing digital experiences that make a
+                        difference.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">UI/UX Design</a></li>
+                        <li><a href="#services">Digital Marketing</a></li>
+                        <li><a href="#">Brand Identity</a></li>
+                        <li><a href="#">Consultation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="tel:+919496418410" class="phone-link">+91 9496418410</a></li>
+                        <li><a href="mailto:official.codex.dev@gmail.com" class="email-link">official.codex.dev@gmail.com</a></li>
+                        <li><a href="#">Kochi, Kerala</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 CodeX. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

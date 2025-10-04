@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS Team</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --primary-light: #8B85FF;
+            --secondary: #FF6584;
+            --accent1: #36D1DC;
+            --accent2: #FFC107;
+            --accent3: #4CAF50;
+            --accent4: #9C27B0;
+            --dark: #1A1D2B;
+            --darker: #12141F;
+            --light: #F5F5F7;
+            --gradient: linear-gradient(135deg, var(--primary), var(--accent1));
+            --gradient2: linear-gradient(135deg, var(--secondary), var(--accent4));
+            --gradient3: linear-gradient(135deg, var(--accent2), var(--accent3));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .team {
+            padding: 100px 5%;
+            background: var(--dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+            position: relative;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .team-member {
+            text-align: center;
+            position: relative;
+        }
+
+        .image-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .member-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            transition: opacity 0.01s;
+        }
+
+        .member-image.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .member-image.next {
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .gradient-mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 180%;
+            /* wider to fully cover circle when rotated */
+            height: 260px;
+            /* taller to cover circle */
+            z-index: 3;
+            overflow: hidden;
+            transform: rotate(45deg);
+            pointer-events: none;
+            opacity: 0;
+            /* invisible until animating */
+        }
+
+        .gradient-mask.active {
+            clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%);
+        }
+
+
+        .gradient-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: var(--gradient2);
+            /* can use gradient/gradient2/gradient3 */
+            opacity: 1;
+        }
+
+        @keyframes sweepInRect45 {
+            0% {
+                transform: translate(100%, -100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translate(0, 0) rotate(45deg);
+            }
+        }
+
+        /* Sweep out (continue moving bottom-left) */
+        @keyframes sweepOutRect45 {
+            0% {
+                transform: translate(0, 0) rotate(45deg);
+            }
+
+            100% {
+                transform: translate(-120%, 120%) rotate(45deg);
+            }
+        }
+
+        .member-info {
+            transition: opacity 0.5s ease;
+        }
+
+        .member-info h3 {
+            margin-bottom: 10px;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .member-role {
+            color: var(--primary-light);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .member-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .member-social a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .member-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Controls */
+        .team-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 15px;
+        }
+
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Progress bar for auto rotation */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--gradient);
+            transition: width 5s linear;
+        }
+
+        .progress-bar.active {
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .image-container {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Team</h2>
+                <p>Get to know the talented individuals who make up the NEXUS team and bring your digital visions to
+                    life.</p>
+            </div>
+
+            <div class="team-grid">
+                <!-- Team Member 1 -->
+                <div class="team-member" data-member="1">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+                            alt="Alex Johnson" class="member-image active">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                            alt="David Rodriguez" class="member-image next">
+                        <div class="gradient-mask">
+                            <div class="gradient-fill"></div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Alex Johnson</h3>
+                        <div class="member-role">Creative Director</div>
+                        <p>Alex leads our design team with over 10 years of experience in visual design and brand
+                            strategy.</p>
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-member" data-member="2">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+                            alt="Sarah Williams" class="member-image active">
+                        <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                            alt="James Wilson" class="member-image next">
+                        <div class="gradient-mask">
+                            <div class="gradient-fill"></div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Sarah Williams</h3>
+                        <div class="member-role">Lead Developer</div>
+                        <p>Sarah specializes in front-end development and has a passion for creating seamless user
+                            experiences.</p>
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-codepen"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-member" data-member="3">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+                            alt="Michael Chen" class="member-image active">
+                        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
+                            alt="Emma Thompson" class="member-image next">
+                        <div class="gradient-mask">
+                            <div class="gradient-fill"></div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Michael Chen</h3>
+                        <div class="member-role">UX Designer</div>
+                        <p>Michael focuses on user research and interaction design to create intuitive digital products.
+                        </p>
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-behance"></i></a>
+                            <a href="#"><i class="fab fa-medium"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-container" style="display: none;">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="team-controls">
+                <button class="control-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <button class="control-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                <button class="control-btn" id="autoBtn" style="display: none;"><i class="fas fa-pause"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const teamMembers = document.querySelectorAll('.team-member');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const autoBtn = document.getElementById('autoBtn');
+            const progressBar = document.getElementById('progressBar');
+            let autoRotate = true;
+            let rotationInterval;
+            let progressInterval;
+
+            // Team member data for rotation
+            const teamData = {
+                1: {
+                    images: [
+                        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
+                        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    ],
+                    names: ["Alex Johnson", "David Rodriguez"],
+                    roles: ["Creative Director", "Backend Developer"],
+                    descriptions: [
+                        "Alex leads our design team with over 10 years of experience in visual design and brand strategy.",
+                        "David builds robust server architectures and APIs that power our web applications."
+                    ]
+                },
+                2: {
+                    images: [
+                        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
+                        "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    ],
+                    names: ["Sarah Williams", "James Wilson"],
+                    roles: ["Lead Developer", "Digital Marketer"],
+                    descriptions: [
+                        "Sarah specializes in front-end development and has a passion for creating seamless user experiences.",
+                        "James develops strategies to maximize online visibility and engagement for our clients."
+                    ]
+                },
+                3: {
+                    images: [
+                        "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
+                        "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
+                    ],
+                    names: ["Michael Chen", "Emma Thompson"],
+                    roles: ["UX Designer", "Project Manager"],
+                    descriptions: [
+                        "Michael focuses on user research and interaction design to create intuitive digital products.",
+                        "Emma ensures our projects are delivered on time and exceed client expectations."
+                    ]
+                }
+            };
+
+            // Track current state for each team member
+            const memberStates = {};
+            teamMembers.forEach(member => {
+                const memberId = member.getAttribute('data-member');
+                memberStates[memberId] = 0; // Start with first profile
+            });
+
+            // Function to rotate a team member
+            function rotateMember(memberId) {
+                const member = document.querySelector(`[data-member="${memberId}"]`);
+                const state = memberStates[memberId];
+                const data = teamData[memberId];
+
+                const activeImg = member.querySelector('.member-image.active');
+                const nextImg = member.querySelector('.member-image.next');
+                const gradientMask = member.querySelector('.gradient-mask');
+                const nameElement = member.querySelector('h3');
+                const roleElement = member.querySelector('.member-role');
+                const descriptionElement = member.querySelector('p');
+
+                const nextState = (state + 1) % data.images.length;
+                nextImg.src = data.images[nextState];
+                nextImg.alt = data.names[nextState];
+
+                // Step 1: show + sweep in
+                gradientMask.style.opacity = "1";
+                gradientMask.style.animation = "sweepInRect45 0.8s forwards";
+
+                setTimeout(() => {
+                    // Step 2: swap image while covered
+                    activeImg.classList.remove('active');
+                    nextImg.classList.remove('next');
+                    nextImg.classList.add('active');
+                    activeImg.classList.add('next');
+
+                    nameElement.style.opacity = 0;
+                    roleElement.style.opacity = 0;
+                    descriptionElement.style.opacity = 0;
+
+                    setTimeout(() => {
+                        nameElement.textContent = data.names[nextState];
+                        roleElement.textContent = data.roles[nextState];
+                        descriptionElement.textContent = data.descriptions[nextState];
+
+                        nameElement.style.opacity = 1;
+                        roleElement.style.opacity = 1;
+                        descriptionElement.style.opacity = 1;
+                    }, 200);
+
+                    memberStates[memberId] = nextState;
+
+                    // Step 3: sweep out
+                    gradientMask.style.animation = "sweepOutRect45 0.8s forwards";
+
+                    // Hide after animation
+                    setTimeout(() => {
+                        gradientMask.style.opacity = "0";
+                    }, 800);
+
+                }, 800); // match sweepIn duration
+            }
+
+
+
+
+            // Function to rotate all team members
+            function rotateAllMembers() {
+                Object.keys(memberStates).forEach(memberId => {
+                    rotateMember(memberId);
+                });
+            }
+
+            // Function to update progress bar
+            function updateProgressBar() {
+                progressBar.classList.remove('active');
+                // Trigger reflow
+                void progressBar.offsetWidth;
+                progressBar.classList.add('active');
+            }
+
+            // Manual rotation controls
+            nextBtn.addEventListener('click', () => {
+                rotateAllMembers();
+                if (autoRotate) resetRotation();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                // For previous, we need to adjust the logic
+                // For simplicity, we'll just rotate twice to go back
+                rotateAllMembers();
+                setTimeout(rotateAllMembers, 800);
+                if (autoRotate) resetRotation();
+            });
+
+            // Auto-rotation toggle
+            autoBtn.addEventListener('click', () => {
+                autoRotate = !autoRotate;
+                if (autoRotate) {
+                    autoBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    startRotation();
+                } else {
+                    autoBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    clearInterval(rotationInterval);
+                    clearInterval(progressInterval);
+                    progressBar.classList.remove('active');
+                }
+            });
+
+            // Function to start auto rotation
+            function startRotation() {
+                rotationInterval = setInterval(() => {
+                    rotateAllMembers();
+                    updateProgressBar();
+                }, 5000);
+
+            }
+
+            // Function to reset rotation timer
+
+
+            // Initialize auto rotation
+            startRotation();
+
+            // Pause rotation on hover
+            teamMembers.forEach(member => {
+                member.addEventListener('mouseenter', () => {
+                    if (autoRotate) {
+                        clearInterval(rotationInterval);
+                        clearInterval(progressInterval);
+                        progressBar.classList.remove('active');
+                        autoBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    }
+                });
+
+                member.addEventListener('mouseleave', () => {
+                    if (autoRotate) {
+                        startRotation();
+                        autoBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
