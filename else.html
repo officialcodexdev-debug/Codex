@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fade-In Image Effect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .image-container {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 2s ease, transform 2s ease;
+            max-width: 90%;
+            max-height: 90vh;
+        }
+
+        .image-container.fade-in {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .loading-text {
+            color: #fff;
+            font-size: 1.5rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 1;
+            transition: opacity 1s ease;
+        }
+
+        .loading-text.fade-out {
+            opacity: 0;
+        }
+
+        .instructions {
+            position: absolute;
+            bottom: 20px;
+            color: #666;
+            text-align: center;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-text" id="loadingText">Loading image...</div>
+    <div class="image-container" id="imageContainer">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80" alt="Beautiful landscape">
+    </div>
+    <div class="instructions">Image will fade in after loading</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageContainer = document.getElementById('imageContainer');
+            const loadingText = document.getElementById('loadingText');
+            const img = document.querySelector('img');
+            
+            // Wait for the image to load completely
+            img.onload = function() {
+                // Fade out loading text
+                setTimeout(function() {
+                    loadingText.classList.add('fade-out');
+                    
+                    // Fade in the image after a short delay
+                    setTimeout(function() {
+                        imageContainer.classList.add('fade-in');
+                    }, 500);
+                }, 1000);
+            };
+            
+            // In case the image is cached and onload doesn't fire
+            if (img.complete) {
+                img.onload();
+            }
+        });
+    </script>
+</body>
+</html>
